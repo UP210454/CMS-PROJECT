@@ -1,9 +1,8 @@
-import * as React from 'react';
-import UncontrolledExample from './Carrusel';
+import Carrusel from "./Carrusel";
 
-function Main(){
+const Main = () =>{
     return(
-        UncontrolledExample
-    )
+        <Carrusel></Carrusel>
+    )   
 }
 export default Main;
