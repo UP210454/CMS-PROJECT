@@ -1,0 +1,45 @@
+CREATE DATABASE cms;
+USE cms;
+CREATE TABLE usuario (
+    id_usuario INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    contrasena VARCHAR(100) NOT NULL
+);
+CREATE TABLE autor (
+    id_autor INT PRIMARY KEY AUTO_INCREMENT,
+    nombre VARCHAR(100) NOT NULL,
+    biografia TEXT,
+    fecha_registro DATE NOT NULL
+);CREATE TABLE noticia (
+    id_noticia INT PRIMARY KEY AUTO_INCREMENT,
+    titulo VARCHAR(200) NOT NULL,
+    contenido TEXT NOT NULL,
+    fecha_publicacion DATE NOT NULL,
+    id_autor INT,
+    FOREIGN KEY (id_autor) REFERENCES autor(id_autor)
+);
+
+
+
+
+
+
+
+
+
+
+INSERT INTO usuario (nombre, email, contrasena) VALUES 
+('Juan Pérez', 'juan.perez@example.com', 'password123'),
+('María López', 'maria.lopez@example.com', 'password456'),
+('Carlos Gómez', 'carlos.gomez@example.com', 'password789');
+
+INSERT INTO autor (nombre, biografia, fecha_registro) VALUES 
+('Ana Martínez', 'Ana es una periodista con más de 10 años de experiencia en el campo del periodismo investigativo.', '2023-01-15'),
+('Luis Rodríguez', 'Luis es un autor y escritor reconocido por sus artículos sobre tecnología.', '2023-02-20'),
+('Sofía Hernández', 'Sofía es una periodista enfocada en noticias de economía y finanzas.', '2023-03-10');
+
+INSERT INTO noticia (titulo, contenido, fecha_publicacion, id_autor) VALUES 
+('Nueva Ley de Tránsito', 'Se ha aprobado una nueva ley de tránsito que afecta a todos los conductores...', '2024-07-01', 1),
+('Avances en Tecnología', 'Los últimos avances en tecnología incluyen el desarrollo de inteligencia artificial...', '2024-07-02', 2),
+('Economía en Crecimiento', 'El crecimiento económico del país ha superado las expectativas...', '2024-07-03', 3);

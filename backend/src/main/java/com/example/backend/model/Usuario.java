@@ -19,8 +19,8 @@ public class Usuario {
 
     private String nombre;
 
-    private Long email;
+    private String email;
 
     private Long contrasena;
-       
+   
 }
