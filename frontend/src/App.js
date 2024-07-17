@@ -5,6 +5,7 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Main from './components/Main/Main'
 import Login from './views/login'
+import AñadirNota from './views/añadirNota';
 
 //Views
 
@@ -16,6 +17,7 @@ function App() {
 					<Routes>
 						<Route path='/login' element={<Login/>}></Route>
 						<Route path='/home' element={<Main/>}></Route>
+						<Route path='/addNotice' element={<AñadirNota/>}></Route>
 					</Routes>
 				</Fragment>
 			</BrowserRouter>
