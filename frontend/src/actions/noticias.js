@@ -10,7 +10,7 @@ export const obtenerNoticias = () => async dispatch => {
         }
     }
     try{
-        const res = await axios.get(`localhost:8080/allNotices`, config);
+        const res = await axios.get(`http://localhost:8080/allNotices`, config);
 
         dispatch({
             type: LISTAR_NOTICIAS,

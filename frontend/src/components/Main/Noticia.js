@@ -1,16 +1,19 @@
-const Noticia = () =>{
-    return (
+import React from "react";
 
-                    <div class="col">
-                        <div class="card shadow-sm">
-                            <img src="./assets/img/foto1.jpg"/>
-                            <div class="card-body">
-                                <p><b>Titulo de la noticia</b></p>
-                                <p class="card-text">Contenido de la noticia</p>
-                            </div>
-                        </div>
-                    </div>
-    )
-}
+const Noticia = ({titulo, contenido}) => {
+  return (
+    <div className="col">
+      <div className="card shadow-sm">
+        <img src="./assets/img/foto1.jpg" />
+        <div className="card-body">
+          <p>
+            <b>{titulo}</b>
+          </p>
+          <p className="card-text">{contenido}</p>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default Noticia;
