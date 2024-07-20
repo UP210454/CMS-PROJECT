@@ -75,3 +75,48 @@
       .bd-mode-toggle .dropdown-menu .active .bi {
         display: block !important;
       }
+
+      .news-container {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        box-shadow: 0 0 10px rgba(30, 11, 11, 0);
+      }
+      .news-image {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin-bottom: 10px;
+      }
+      .news-text {
+        font-size: 16px;
+        line-height: 1.6;
+      }
+      .news-title{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+      h1{
+        font-style: bold;
+
+      }
+      h5{
+        font-style: oblique;
+      }
+      .back-button {
+
+        margin: 10px;
+        padding: 10px 20px;
+        background-color: #91581775;
+        color: white;
+        border: none;*
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      
+      .back-button:hover {
+        background-color: #6985a39a;
+      }
+      
