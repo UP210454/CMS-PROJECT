@@ -9,7 +9,7 @@ function AñadirNota () {
           maxWidth="sm"
           sx={{
             marginTop: '20px',
-            backgroundColor: 'black',
+            backgroundColor: 'gray',
             padding: '20px',
             borderRadius: '8px',
           }}

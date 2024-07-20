@@ -1,0 +1,1 @@
+export const LISTAR_NOTICIAS = 'LISTAR_NOTICIAS';
