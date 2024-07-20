@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
-@Controller
+@RestController
 public class UsuarioController {
     private final UsuarioService usuarioService;
 

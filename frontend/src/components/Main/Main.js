@@ -1,5 +1,5 @@
 import Carrusel from "./Carrusel";
-import Noticia from "./Noticia";
+import AlbumNoticias from "./AlbumNoticias";
 
 const Main = () =>{
     return(
@@ -9,10 +9,7 @@ const Main = () =>{
             <br/>
             <Carrusel></Carrusel>
             <br/>
-            <div class="album py-5 bg-body-tertiary">
-                <Noticia></Noticia>
-                <Noticia></Noticia>
-            </div>
+            <AlbumNoticias></AlbumNoticias>
         </div>
     ) 
 }
