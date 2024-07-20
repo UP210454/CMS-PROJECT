@@ -26,8 +26,8 @@ const AlbumNoticias = () => {
             <div className="container">
                 <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                     {
-		            	listado.map(noticia => (
-                            <Noticia titulo={noticia.titulo} contenido={noticia.contenido}></Noticia>
+		            	noticias.map(noticia => (
+                            <Noticia titulo={noticia.titulo} resumen={noticia.resumen} id={noticia.idNoticia} url={noticia.url}></Noticia>
                         ))
                     }
                 </div>

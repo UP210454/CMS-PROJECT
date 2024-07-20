@@ -22,7 +22,7 @@ function App() {
 					<Routes>
 						<Route path='/login' element={<Login/>}></Route>
 						<Route path='/home' element={<Main/>}></Route>
-						<Route path='/detalleNota' element={<DetalleNota/>}></Route>
+						<Route path='/detalleNota/:id' element={<DetalleNota/>}></Route>
 						<Route path='/addNotice' element={<AñadirNota/>}></Route>
 						<Route path='/*' element={<NotFoundPage/>}></Route>
 					</Routes>

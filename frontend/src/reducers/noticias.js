@@ -1,4 +1,4 @@
-import {LISTAR_NOTICIAS} from '../actions/types';
+import {LISTAR_NOTICIAS, DETALLES_NOTICIA} from '../actions/types';
 
 const initialState = {
     listado: [],
@@ -14,6 +14,11 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 listado: payload
+            };
+        case DETALLES_NOTICIA:
+            return {
+                ...state,
+                detalles: payload
             };
         default:
             return state;

@@ -1,37 +1,48 @@
-import React from 'react';
+import React, {useEffect, useState} from "react"
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+
+import { obtenerNoticia } from '../actions/noticias';
 
 const DetalleNota = () => {
-  return (
-    <div>
-        
-        <br/>
-        <br/>
-        <br/>
-        <div class="news-container">
-            <button className="back-button">
-                Regresar
-            </button>
-            <br/>
-            <br/>
-            <img class="news-image" src="./assets/img/foto1.jpg" alt="Descripción de la imagen"/>
-            <div class="news-title">
-                <h1>Titulo</h1>
-                <h5>Autor</h5>
-            </div>
-           
-            <p class="news-text">
+    const { id } = useParams();
 
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vestibulum lacus id leo tristique, non dictum est placerat. 
-                Proin eleifend ante eu justo tincidunt, at varius lorem hendrerit. Nulla facilisi. Sed id fermentum eros. Duis at consequat justo.
-                Nullam eleifend nisl id ultrices fermentum. Nulla facilisi. Sed tristique dolor et turpis egestas, vitae suscipit ex venenatis. 
-                Nullam ut turpis ac nunc eleifend mattis. Nulla facilisi. Morbi vitae venenatis lacus. Sed aliquam posuere tincidunt. Sed a neque 
-                eget libero posuere lobortis. In ornare vitae ligula in consectetur. Aenean ultrices dolor sit amet diam congue fringilla. Nam 
-                vulputate ante sed tellus sollicitudin, eget tincidunt erat tristique.
-            </p>
-        </div>
-    </div>
+    const dispatch =  useDispatch();
     
-  );
+    const { detalles } = useSelector(state => state.noticias);
+    
+    const [noticia, setNoticia] = useState(null);
+
+    useEffect(() => {
+        dispatch(obtenerNoticia(id));
+    }, [id]);
+
+    useEffect(() => {
+        setNoticia(detalles);
+    }, [detalles]);
+
+    return (
+        <div>  
+            <br/>
+            <br/>
+            <br/>
+            <div className="news-container">
+                <a href='/home'><button className="back-button">
+                    Regresar
+                </button></a>
+                <br/>
+                <br/>
+                <img className="news-image" src={noticia?.url || "Foto no encontrada"} alt="Descripción de la imagen"/>
+                <div className="news-title">
+                    <h1>{noticia?.titulo || "Sin titulo"}</h1>
+                </div>
+                <p className="news-text">
+                    {noticia?.contenido || "Error"}
+                </p>
+            </div>
+        </div>
+        
+    );
 };
 
 export default DetalleNota;
