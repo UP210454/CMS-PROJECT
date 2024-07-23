@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.backend.model.Noticia;
+import com.example.backend.model.Usuario;
 import com.example.backend.repository.NoticiaRepository;
 
 @Service
@@ -24,6 +25,10 @@ public class NoticiaService {
     
     public Optional<Noticia>getNoticia(Long id){
         return noticiaRepository.findById(id);
+    }
+
+    public Noticia saveNoticia(Noticia noticia) {
+        return noticiaRepository.save(noticia);
     }
     
     public void eliminar(Long id){

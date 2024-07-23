@@ -20,6 +20,8 @@ public class Autor {
 
     private String nombre;
 
+    private String biografia;
+
     private LocalDate fechaRegistro;
     
 }
