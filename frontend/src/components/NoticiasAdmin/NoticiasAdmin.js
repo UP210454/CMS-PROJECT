@@ -8,7 +8,7 @@ const NoticiasAdmin = ({titulo, resumen, id}) => {
           <p>{resumen}</p>
         </div>
         <div className="botones">
-          <button className="buttonEdit">Update</button>      
+          <button className="buttonEdit">Updt</button>      
         </div>
         <div className="botones">
           <button className="buttonEdit">Dlt</button>
