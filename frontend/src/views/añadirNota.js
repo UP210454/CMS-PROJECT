@@ -1,5 +1,7 @@
-import React from "react";
-import { Container, TextField, Box } from '@mui/material';
+import React, { useState } from "react";
+import { Container, TextField, Box, Button, MenuItem } from '@mui/material';
+const authors = ['Author 1', 'Author 2', 'Author 3']; 
+
 function AñadirNota () {
     return (
         <div>
@@ -108,4 +110,5 @@ function AñadirNota () {
         </div>
     );
 }
+
 export default AñadirNota;
