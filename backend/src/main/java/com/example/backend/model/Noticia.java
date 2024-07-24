@@ -22,7 +22,11 @@ public class Noticia {
 
     private String contenido;
 
+    private String resumen;
+
     private LocalDate fechaPublicacion;
+
+    private String url;
 
     private Long idAutor;
    

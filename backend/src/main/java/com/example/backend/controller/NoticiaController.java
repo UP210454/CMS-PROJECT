@@ -14,6 +14,7 @@ import com.example.backend.model.Noticia;
 import com.example.backend.model.Usuario;
 import com.example.backend.service.NoticiaService;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,6 +30,7 @@ public class NoticiaController {
         this.noticiaService = noticiaService;
     }
     
+
     @GetMapping({"/allNotices"})
     public ResponseEntity<List<Noticia>> getNoticias(){
         return ResponseEntity.ok(noticiaService.getNoticias());
