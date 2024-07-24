@@ -17,16 +17,21 @@ public class UsuarioService {
     public UsuarioService(UsuarioRepository usuarioRepository) {
         this.usuarioRepository = usuarioRepository;
     }
-
-    public List<Usuario> getUsers(){
+ 
+    public List<Usuario> getAllUsers(){
         return usuarioRepository.findAll();
     }
     
-    public Optional<Usuario>getUser(Long id){
+    public Optional<Usuario>getUserbyId(Long id){
         return usuarioRepository.findById(id);
     }
     
-    public void eliminar(Long id){
+    public Usuario saveUsuario(Usuario usuario) {
+        return usuarioRepository.save(usuario);
+    }
+
+    public void deleteUser(Long id){
         usuarioRepository.deleteById(id);
     }
+
 }

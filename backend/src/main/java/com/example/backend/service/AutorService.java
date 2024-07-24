@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.backend.model.Autor;
+import com.example.backend.model.Noticia;
 import com.example.backend.repository.AutorRepository;
 
 @Service
@@ -26,6 +27,10 @@ public class AutorService {
         return autorRepository.findById(id);
     }
     
+    public Autor saveAutor(Autor autor) {
+        return autorRepository.save(autor);
+    }
+
     public void eliminar(Long id){
         autorRepository.deleteById(id);
     }
