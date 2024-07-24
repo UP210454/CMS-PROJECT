@@ -7,8 +7,12 @@ function MenuAdmin() {
         <div>
             <br></br>
             <br></br>
-            <h1>Noticias</h1>
+            <br></br>
+            <h1 className="tituloAdmin"><i>Administración de Noticias</i></h1>
             <NoticiasAdmin></NoticiasAdmin>
+            <NoticiasAdmin></NoticiasAdmin>
+            <NoticiasAdmin></NoticiasAdmin>
+                   
         </div>
     );
 }
