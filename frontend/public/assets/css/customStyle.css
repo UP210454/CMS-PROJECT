@@ -136,3 +136,27 @@ h5 {
   height: 500px;
   width: 700px;
 }
+
+.noticiaComponent{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 30px;
+}
+
+.detallesNoticia{
+  width: 80%;
+  border:3px black solid;
+  padding:10px;
+}
+
+.botones{
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttonEdit{
+  width: 100px;
+  height: 100px;
+  border: 3px black solid;
+}
