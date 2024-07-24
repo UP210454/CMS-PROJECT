@@ -1,16 +1,14 @@
 import React from "react";
-import './NoticiasAdmin.css';
 
-const NoticiasAdmin = () => {
+const NoticiasAdmin = ({titulo, resumen, id}) => {
   return (
     <div className="noticiaComponent">  
         <div className="detallesNoticia">
-          <h1>Titulo</h1>
-          <p>lsdfnñksenfijnqejkfnlkefnlksdanfksdlkfnlknfksnflknslkfnlksnflknsflkmsjaakandflsndflksdlfknlksdfaenfdsdfklkdfñkl</p>
-          <p>Fecha</p>
+          <h1>{titulo}</h1>
+          <p>{resumen}</p>
         </div>
         <div className="botones">
-          <button className="buttonEdit">Updt</button>         
+          <button className="buttonEdit">Update</button>      
         </div>
         <div className="botones">
           <button className="buttonEdit">Dlt</button>
