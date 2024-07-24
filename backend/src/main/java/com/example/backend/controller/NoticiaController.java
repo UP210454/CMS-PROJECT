@@ -11,12 +11,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.backend.model.Noticia;
+import com.example.backend.model.Usuario;
 import com.example.backend.service.NoticiaService;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -38,4 +40,10 @@ public class NoticiaController {
     public ResponseEntity<Optional<Noticia>> getNoticia(@PathVariable Long id){
         return ResponseEntity.ok(noticiaService.getNoticia(id));
     }   
+
+    @PostMapping("/noticia/")
+    public Noticia createNoticia(@RequestBody Noticia noticia) {
+        return this.noticiaService.saveNoticia(noticia);
+    }
+
 }

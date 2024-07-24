@@ -8,6 +8,7 @@ import Main from './components/Main/Main'
 import Login from './views/login'
 import DetalleNota from './views/detalleNota';
 import AñadirNota from './views/añadirNota';
+import MenuAdmin from './views/menuAdmin';
 import NotFoundPage from './components/routing/NotFoundPage'
 import store from './store';
 
@@ -24,6 +25,7 @@ function App() {
 						<Route path='/home' element={<Main/>}></Route>
 						<Route path='/detalleNota/:id' element={<DetalleNota/>}></Route>
 						<Route path='/addNotice' element={<AñadirNota/>}></Route>
+						<Route path='/noticiasAdmin' element={<MenuAdmin/>}></Route>
 						<Route path='/*' element={<NotFoundPage/>}></Route>
 					</Routes>
 				</Fragment>
