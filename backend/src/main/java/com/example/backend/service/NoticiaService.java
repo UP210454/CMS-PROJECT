@@ -31,7 +31,4 @@ public class NoticiaService {
         return noticiaRepository.save(noticia);
     }
     
-    public void eliminar(Long id){
-        noticiaRepository.deleteById(id);
-    }
 }

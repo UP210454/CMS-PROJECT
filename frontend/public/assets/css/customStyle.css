@@ -75,13 +75,14 @@
   display: block !important;
 }
 
-      .bd-mode-toggle .dropdown-menu .active .bi {
-        display: block !important;
-      }
+.bd-mode-toggle .dropdown-menu .active .bi {
+  display: block !important;
+}
 
-      .tituloAdmin{
-        margin:10px;
-      }
+.tituloAdmin{
+  margin:10px;
+}
+
 .news-container {
   max-width: 700px;
   margin: 20px auto;
@@ -110,7 +111,10 @@
 
 h1 {
   font-style: bold;
+}
 
+h3 {
+  font-style: bold;
 }
 
 h5 {
@@ -147,6 +151,7 @@ h5 {
 .detallesNoticia{
   width: 80%;
   border:3px black solid;
+  border-radius: 10px;
   padding:10px;
 }
 
@@ -159,4 +164,15 @@ h5 {
   width: 100px;
   height: 100px;
   border: 3px black solid;
+  border-radius: 10px;
+}
+
+.deleteImg{
+  width: 30%;
+  height: 30%;
+}
+
+.updateImg{
+  width: 30%;
+  height: 30%;
 }
