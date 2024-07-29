@@ -34,4 +34,18 @@ public class NoticiaService {
     public void eliminar(Long id){
         noticiaRepository.deleteById(id);
     }
+
+    // Method to update a news article
+    public Optional<Noticia> updateNoticia(Long id, Noticia newNoticiaData) {
+        return noticiaRepository.findById(id)
+            .map(noticia -> {
+                noticia.setTitulo(newNoticiaData.getTitulo());
+                noticia.setContenido(newNoticiaData.getContenido());
+                noticia.setResumen(newNoticiaData.getResumen());
+                noticia.setFechaPublicacion(newNoticiaData.getFechaPublicacion());
+                noticia.setUrl(newNoticiaData.getUrl());
+                noticia.setIdAutor(newNoticiaData.getIdAutor());
+                return noticiaRepository.save(noticia);
+            });
+    }
 }
