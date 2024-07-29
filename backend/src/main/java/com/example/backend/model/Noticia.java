@@ -15,8 +15,10 @@ public class Noticia {
 
     private String titulo;
 
+    @Lob
     private String contenido;
 
+    @Lob
     private String resumen;
 
     @Column(name = "fecha_publicacion")
@@ -24,5 +26,5 @@ public class Noticia {
 
     private String url;
 
-    private String autor;  
+    private String autor;  // Asegúrate de que sea un String si en la base de datos es un VARCHAR
 }

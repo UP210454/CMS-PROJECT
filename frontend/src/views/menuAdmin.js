@@ -25,7 +25,7 @@ function MenuAdmin() {
             <br></br>
             <br></br>
             <br></br>
-            <h1 className="tituloAdmin"><i>Administración de Noticias</i></h1>
+            <h1 className="tituloAdmin">Administración de Noticias</h1>
             {
 		            	noticias.map(noticia => (
                             <NoticiasAdmin titulo={noticia.titulo} resumen={noticia.resumen} id={noticia.idNoticia}></NoticiasAdmin>
