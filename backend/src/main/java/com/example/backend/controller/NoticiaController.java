@@ -41,6 +41,7 @@ public class NoticiaController {
         return ResponseEntity.ok(noticiaService.getNoticia(id));
     }   
 
+    @CrossOrigin(origins = "http://localhost:3000/addNotice")
     @PostMapping("/noticia/")
     public Noticia createNoticia(@RequestBody Noticia noticia) {
         return this.noticiaService.saveNoticia(noticia);
