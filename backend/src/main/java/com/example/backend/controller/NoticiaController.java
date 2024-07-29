@@ -47,4 +47,9 @@ public class NoticiaController {
         return this.noticiaService.saveNoticia(noticia);
     }
 
+    @DeleteMapping("/delete/{id}")
+    public Noticia deleteNoticia(Long idNoticia){
+        return this.noticiaService.eliminar(idNoticia);
+    }
+
 }
