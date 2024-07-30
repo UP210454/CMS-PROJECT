@@ -1,181 +1,165 @@
 import React, { useState } from "react";
-import { Container, Box, Button, Input, Typography } from '@mui/material';
+import { Container, TextField, Box, Button, MenuItem } from '@mui/material';
+const authors = ['Author 1', 'Author 2', 'Author 3']; 
 
-function AñadirNota() {
-    const [titulo, setTitulo] = useState('');
-    const [contenido, setContenido] = useState('');
-    const [resumen, setResumen] = useState('');
-    const [fechaPublicacion, setFechaPublicacion] = useState('');
-    const [url, setUrl] = useState('');
-    const [autor, setAutor] = useState('');
+function AñadirNota () {
+  const [nota, setNota] = useState({
+    titulo: '',
+    fecha: '',
+    autor: '',
+    urlImagen: '',
+    contenido: ''
+  });
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setNota((prevNota) => ({
+      ...prevNota,
+      [name]: value
+    }));
+  };
 
-        const resumenGenerado = contenido.split('.')[0]; // Extrae el resumen hasta el primer punto
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Submitted Note:', nota);
+    // Aquí puedes manejar el envío de la nota (e.g., enviarla a un servidor)
+  };
 
-        const noticia = {
-            titulo,
-            contenido,
-            resumen: resumenGenerado,
-            fechaPublicacion,
-            url,
-            autor
-        };
-
-        try {
-            const response = await fetch('http://localhost:8080/noticia/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(noticia),
-            });
-
-            if (!response.ok) {
-                throw new Error('Error al añadir la nota: ' + response.statusText);
-            }
-
-            alert('Nota añadida correctamente');
-        } catch (error) {
-            alert(error.message);
-        }
-    };
-
-    return (
-        <div>
-            <Container
-                maxWidth="sm"
-                sx={{
-                    marginTop: '20px',
-                    backgroundColor: 'gray',
-                    padding: '20px',
-                    borderRadius: '8px',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center'
-                }}
-            >
-                <Typography variant="h6" sx={{ color: 'white', marginBottom: '20px' }}>
-                    Añadir Nota
-                </Typography>
-                <Box
-                    component="form"
-                    noValidate
-                    autoComplete="off"
-                    onSubmit={handleSubmit}
-                    sx={{ width: '100%' }}
-                >
-                    <Box sx={{ marginBottom: '20px' }}>
-                        <Typography variant="body1" sx={{ color: 'white', marginBottom: '8px' }}>
-                            Título
-                        </Typography>
-                        <Input
-                            fullWidth
-                            placeholder="Título"
-                            value={titulo}
-                            onChange={(e) => setTitulo(e.target.value)}
-                            sx={{
-                                color: 'white',
-                                backgroundColor: 'transparent',
-                                border: '1px solid white',
-                                borderRadius: '4px',
-                                padding: '10px',
-                                '&::placeholder': { color: 'white' }
-                            }}
-                        />
-                    </Box>
-                    <Box sx={{ marginBottom: '20px' }}>
-                        <Typography variant="body1" sx={{ color: 'white', marginBottom: '8px' }}>
-                            Fecha
-                        </Typography>
-                        <Input
-                            fullWidth
-                            placeholder="Fecha"
-                            type="date"
-                            value={fechaPublicacion}
-                            onChange={(e) => setFechaPublicacion(e.target.value)}
-                            sx={{
-                                color: 'white',
-                                backgroundColor: 'transparent',
-                                border: '1px solid white',
-                                borderRadius: '4px',
-                                padding: '10px',
-                                '&::placeholder': { color: 'white' }
-                            }}
-                        />
-                    </Box>
-                    <Box sx={{ marginBottom: '20px' }}>
-                        <Typography variant="body1" sx={{ color: 'white', marginBottom: '8px' }}>
-                            Autor
-                        </Typography>
-                        <Input
-                            fullWidth
-                            placeholder="Autor"
-                            value={autor}
-                            onChange={(e) => setAutor(e.target.value)}
-                            sx={{
-                                color: 'white',
-                                backgroundColor: 'transparent',
-                                border: '1px solid white',
-                                borderRadius: '4px',
-                                padding: '10px',
-                                '&::placeholder': { color: 'white' }
-                            }}
-                        />
-                    </Box>
-                    <Box sx={{ marginBottom: '20px' }}>
-                        <Typography variant="body1" sx={{ color: 'white', marginBottom: '8px' }}>
-                            URL de imagen
-                        </Typography>
-                        <Input
-                            fullWidth
-                            placeholder="URL de imagen"
-                            value={url}
-                            onChange={(e) => setUrl(e.target.value)}
-                            sx={{
-                                color: 'white',
-                                backgroundColor: 'transparent',
-                                border: '1px solid white',
-                                borderRadius: '4px',
-                                padding: '10px',
-                                '&::placeholder': { color: 'white' }
-                            }}
-                        />
-                    </Box>
-                    <Box sx={{ marginBottom: '20px' }}>
-                        <Typography variant="body1" sx={{ color: 'white', marginBottom: '8px' }}>
-                            Contenido
-                        </Typography>
-                        <Input
-                            fullWidth
-                            placeholder="Contenido"
-                            multiline
-                            rows={10}
-                            value={contenido}
-                            onChange={(e) => setContenido(e.target.value)}
-                            sx={{
-                                color: 'white',
-                                backgroundColor: 'transparent',
-                                border: '1px solid white',
-                                borderRadius: '4px',
-                                padding: '10px',
-                                '&::placeholder': { color: 'white' }
-                            }}
-                        />
-                    </Box>
-                    <Button
-                        type="submit"
-                        variant="contained"
-                        color="primary"
-                        sx={{ marginTop: '20px' }}
-                    >
-                        Añadir Nota
-                    </Button>
-                </Box>
-            </Container>
-        </div>
-    );
+  return (
+    <div>
+      <br />
+      <br />
+      <Container
+        maxWidth="sm"
+        sx={{
+          marginTop: '20px',
+          backgroundColor: 'black',
+          padding: '20px',
+          borderRadius: '8px',
+        }}
+      >
+        <Box component="form" noValidate autoComplete="off" onSubmit={handleSubmit}>
+          <TextField
+            fullWidth
+            label="Título"
+            name="titulo"
+            variant="outlined"
+            margin="normal"
+            value={nota.titulo}
+            onChange={handleChange}
+            InputLabelProps={{ style: { color: 'white' } }}
+            InputProps={{ style: { color: 'white' } }}
+            sx={{
+              '& .MuiOutlinedInput-root': {
+                '& fieldset': { borderColor: 'white' },
+                '&:hover fieldset': { borderColor: 'white' },
+                '&.Mui-focused fieldset': { borderColor: 'white' }
+              },
+              '& .MuiInputBase-input': { color: 'white' },
+              '& .MuiFormLabel-root': { color: 'white' }
+            }}
+          />
+          <TextField
+            fullWidth
+            label="Fecha"
+            name="fecha"
+            type="date"
+            variant="outlined"
+            margin="normal"
+            value={nota.fecha}
+            onChange={handleChange}
+            InputLabelProps={{ shrink: true, style: { color: 'white' } }}
+            InputProps={{ style: { color: 'white' } }}
+            sx={{
+              '& .MuiOutlinedInput-root': {
+                '& fieldset': { borderColor: 'white' },
+                '&:hover fieldset': { borderColor: 'white' },
+                '&.Mui-focused fieldset': { borderColor: 'white' }
+              },
+              '& .MuiInputBase-input': { color: 'white' },
+              '& .MuiFormLabel-root': { color: 'white' }
+            }}
+          />
+          <TextField
+            fullWidth
+            select
+            label="Autor"
+            name="autor"
+            variant="outlined"
+            margin="normal"
+            value={nota.autor}
+            onChange={handleChange}
+            InputLabelProps={{ style: { color: 'white' } }}
+            InputProps={{ style: { color: 'white' } }}
+            sx={{
+              '& .MuiOutlinedInput-root': {
+                '& fieldset': { borderColor: 'white' },
+                '&:hover fieldset': { borderColor: 'white' },
+                '&.Mui-focused fieldset': { borderColor: 'white' }
+              },
+              '& .MuiInputBase-input': { color: 'white' },
+              '& .MuiFormLabel-root': { color: 'white' }
+            }}
+          >
+            {authors.map((author) => (
+              <MenuItem key={author} value={author}>
+                {author}
+              </MenuItem>
+            ))}
+          </TextField>
+          <TextField
+            fullWidth
+            label="URL de imagen"
+            name="urlImagen"
+            variant="outlined"
+            margin="normal"
+            value={nota.urlImagen}
+            onChange={handleChange}
+            InputLabelProps={{ style: { color: 'white' } }}
+            InputProps={{ style: { color: 'white' } }}
+            sx={{
+              '& .MuiOutlinedInput-root': {
+                '& fieldset': { borderColor: 'white' },
+                '&:hover fieldset': { borderColor: 'white' },
+                '&.Mui-focused fieldset': { borderColor: 'white' }
+              },
+              '& .MuiInputBase-input': { color: 'white' },
+              '& .MuiFormLabel-root': { color: 'white' }
+            }}
+          />
+          <TextField
+            fullWidth
+            label="Contenido"
+            name="contenido"
+            variant="outlined"
+            margin="normal"
+            multiline
+            rows={10}
+            value={nota.contenido}
+            onChange={handleChange}
+            InputLabelProps={{ style: { color: 'white' } }}
+            InputProps={{ style: { color: 'white' } }}
+            sx={{
+              '& .MuiOutlinedInput-root': {
+                '& fieldset': { borderColor: 'white' },
+                '&:hover fieldset': { borderColor: 'white' },
+                '&.Mui-focused fieldset': { borderColor: 'white' }
+              },
+              '& .MuiInputBase-input': { color: 'white' },
+              '& .MuiFormLabel-root': { color: 'white' }
+            }}
+          />
+          <Button
+            type="submit"
+            variant="contained"
+            sx={{ marginTop: '20px', backgroundColor: 'white', color: 'black' }}
+          >
+            Enviar
+          </Button>
+        </Box>
+      </Container>
+    </div>
+  );
 }
 
 export default AñadirNota;
