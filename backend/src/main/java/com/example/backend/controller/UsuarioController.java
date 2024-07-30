@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
@@ -44,5 +45,12 @@ public class UsuarioController {
     @PostMapping("/usuario/")
     public Usuario createUsuario(@RequestBody Usuario usuario) {
         return this.usuarioService.saveUsuario(usuario);
+    }
+
+    @PutMapping("/user/{id}")
+    public ResponseEntity<Usuario> updateUser(@PathVariable Long id, @RequestBody Usuario usuarioDetails) {
+        return usuarioService.updateUsuario(id, usuarioDetails)
+            .map(updatedUsuario -> ResponseEntity.ok(updatedUsuario))
+            .orElseGet(() -> ResponseEntity.notFound().build());
     }
 }

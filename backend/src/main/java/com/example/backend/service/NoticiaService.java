@@ -31,4 +31,20 @@ public class NoticiaService {
         return noticiaRepository.save(noticia);
     }
     
+    public void eliminar(Long id){
+        noticiaRepository.deleteById(id);
+    }
+
+    public Optional<Noticia> updateNoticia(Long id, Noticia newNoticiaData) {
+        return noticiaRepository.findById(id)
+            .map(noticia -> {
+                noticia.setTitulo(newNoticiaData.getTitulo());
+                noticia.setContenido(newNoticiaData.getContenido());
+                noticia.setResumen(newNoticiaData.getResumen());
+                noticia.setFechaPublicacion(newNoticiaData.getFechaPublicacion());
+                noticia.setUrl(newNoticiaData.getUrl());
+                noticia.setIdAutor(newNoticiaData.getIdAutor());
+                return noticiaRepository.save(noticia);
+            });
+    }
 }

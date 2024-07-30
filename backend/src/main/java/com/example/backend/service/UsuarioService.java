@@ -34,4 +34,15 @@ public class UsuarioService {
         usuarioRepository.deleteById(id);
     }
 
+    // Method to update a user
+    public Optional<Usuario> updateUsuario(Long id, Usuario newUsuarioData) {
+        return usuarioRepository.findById(id)
+            .map(usuario -> {
+                usuario.setNombre(newUsuarioData.getNombre());
+                usuario.setEmail(newUsuarioData.getEmail());
+                usuario.setContrasena(newUsuarioData.getContrasena());
+                return usuarioRepository.save(usuario);
+            });
+    }
+
 }

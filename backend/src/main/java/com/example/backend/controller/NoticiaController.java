@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -47,5 +48,11 @@ public class NoticiaController {
         return this.noticiaService.saveNoticia(noticia);
     }
 
-   
+    @PutMapping("/news/{id}")
+    public ResponseEntity<Noticia> updateNews(@PathVariable Long id, @RequestBody Noticia noticiaDetails) {
+        return noticiaService.updateNoticia(id, noticiaDetails)
+            .map(updatedNoticia -> ResponseEntity.ok(updatedNoticia))
+            .orElseGet(() -> ResponseEntity.notFound().build());
+    }
+
 }
