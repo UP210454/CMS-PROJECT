@@ -55,4 +55,10 @@ public class NoticiaController {
             .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+      @DeleteMapping("/noticia/{id}")
+    public ResponseEntity<Void> deleteNoticia(@PathVariable Long id) {
+        noticiaService.eliminar(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }
