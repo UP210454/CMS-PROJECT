@@ -42,6 +42,7 @@ public class NoticiaController {
         return ResponseEntity.ok(noticiaService.getNoticia(id));
     }   
 
+    
     @PostMapping("/noticia/")
     public Noticia createNoticia(@RequestBody Noticia noticia) {
         return this.noticiaService.saveNoticia(noticia);

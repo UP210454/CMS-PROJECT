@@ -35,7 +35,6 @@ public class NoticiaService {
         noticiaRepository.deleteById(id);
     }
 
-    // Method to update a news article
     public Optional<Noticia> updateNoticia(Long id, Noticia newNoticiaData) {
         return noticiaRepository.findById(id)
             .map(noticia -> {
