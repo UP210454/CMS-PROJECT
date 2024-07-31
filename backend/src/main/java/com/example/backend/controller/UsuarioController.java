@@ -15,6 +15,7 @@ import com.example.backend.service.UsuarioService;
 
 import jakarta.validation.Valid;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -53,4 +54,5 @@ public class UsuarioController {
             .map(updatedUsuario -> ResponseEntity.ok(updatedUsuario))
             .orElseGet(() -> ResponseEntity.notFound().build());
     }
+
 }

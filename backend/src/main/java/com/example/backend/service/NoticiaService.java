@@ -43,7 +43,6 @@ public class NoticiaService {
                 noticia.setResumen(newNoticiaData.getResumen());
                 noticia.setFechaPublicacion(newNoticiaData.getFechaPublicacion());
                 noticia.setUrl(newNoticiaData.getUrl());
-                noticia.setIdAutor(newNoticiaData.getIdAutor());
                 return noticiaRepository.save(noticia);
             });
     }
