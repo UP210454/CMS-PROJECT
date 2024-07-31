@@ -15,6 +15,7 @@ import com.example.backend.model.Usuario;
 import com.example.backend.service.NoticiaService;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -55,7 +56,7 @@ public class NoticiaController {
             .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-      @DeleteMapping("/noticia/{id}")
+    @DeleteMapping("/noticia/{id}")
     public ResponseEntity<Void> deleteNoticia(@PathVariable Long id) {
         noticiaService.eliminar(id);
         return ResponseEntity.noContent().build();
