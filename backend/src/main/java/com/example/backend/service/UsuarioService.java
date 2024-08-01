@@ -35,6 +35,7 @@ public class UsuarioService {
     public void deleteUser(Long id){
         usuarioRepository.deleteById(id);
     }
+
     public List<Usuario> MayuMinu(){
         List<Usuario> usuarios = usuarioRepository.findAll();
         return usuarios.stream()
