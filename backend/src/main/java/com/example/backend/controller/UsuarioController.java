@@ -42,6 +42,12 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarioService.getUserbyId(id));
     }
 
+    @GetMapping("/min")
+    public List<Usuario> MayuMinu() {
+        return usuarioService.MayuMinu();
+    }
+    
+
     @PostMapping("/usuario/")
     public Usuario createUsuario(@RequestBody Usuario usuario) {
         return this.usuarioService.saveUsuario(usuario);
