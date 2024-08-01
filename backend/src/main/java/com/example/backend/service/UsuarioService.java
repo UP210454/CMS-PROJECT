@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.backend.dto.UsuarioDTO;
+import com.example.backend.mapper.UsuarioMapper;
 import com.example.backend.model.Usuario;
 import com.example.backend.repository.UsuarioRepository;
 
@@ -44,5 +46,4 @@ public class UsuarioService {
                 return usuarioRepository.save(usuario);
             });
     }
-
 }
