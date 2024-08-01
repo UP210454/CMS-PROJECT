@@ -12,11 +12,15 @@ import com.example.backend.repository.NoticiaRepository;
 
 @Service
 public class NoticiaService {
+    @Autowired
     private final NoticiaRepository noticiaRepository;
 
-    @Autowired
     public NoticiaService(NoticiaRepository noticiaRepository) {
         this.noticiaRepository = noticiaRepository;
+    }
+
+    public List<Noticia> getNoticiasByAutor(String autor) {
+        return noticiaRepository.findByAutor(autor);
     }
 
     public List<Noticia> getNoticias(){
@@ -35,7 +39,6 @@ public class NoticiaService {
         noticiaRepository.deleteById(id);
     }
 
-    // Method to update a news article
     public Optional<Noticia> updateNoticia(Long id, Noticia newNoticiaData) {
         return noticiaRepository.findById(id)
             .map(noticia -> {
@@ -44,7 +47,7 @@ public class NoticiaService {
                 noticia.setResumen(newNoticiaData.getResumen());
                 noticia.setFechaPublicacion(newNoticiaData.getFechaPublicacion());
                 noticia.setUrl(newNoticiaData.getUrl());
-                noticia.setIdAutor(newNoticiaData.getIdAutor());
+                noticia.setAutor(newNoticiaData.getAutor());
                 return noticiaRepository.save(noticia);
             });
     }

@@ -12,7 +12,7 @@ const Login = () => {
           <div className="collapse navbar-collapse" id="navbarCollapse">
             <ul className="navbar-nav me-auto mb-2 mb-md-0">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/addNotice">Añadir tarea</a>
+                <a className="nav-link active" aria-current="page" href="/addNotice">Añadir noticia</a>
               </li>
               <li className="nav-item">
                 <a className="nav-link active" aria-current="page" href="/noticiasAdmin">Administrador de noticias</a>

@@ -1,46 +1,44 @@
 package com.example.backend.controller;
 
+import com.example.backend.dto.UsuarioDTO;
+import com.example.backend.service.UsuarioService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 import java.util.Optional;
 
-import org.apache.catalina.connector.Response;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.example.backend.model.Usuario;
-import com.example.backend.service.UsuarioService;
-
-import jakarta.validation.Valid;
-
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-
 @RestController
+@RequestMapping("/api/usuarios")
 public class UsuarioController {
+
     private final UsuarioService usuarioService;
 
-    public UsuarioController(@Autowired UsuarioService usuarioService) {
+    @Autowired
+    public UsuarioController(UsuarioService usuarioService) {
         this.usuarioService = usuarioService;
     }
-    
-    @GetMapping({"/allUsers"})
-    public ResponseEntity<List<Usuario>> getAllUsers(){
-        return ResponseEntity.ok(usuarioService.getAllUsers());
+
+    @GetMapping
+    public ResponseEntity<List<UsuarioDTO>> getAllUsers() {
+        List<UsuarioDTO> usuarios = usuarioService.getAllUsers();
+        return ResponseEntity.ok(usuarios);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<Usuario>> getUser(@PathVariable Long id){
-        return ResponseEntity.ok(usuarioService.getUserbyId(id));
+    public ResponseEntity<UsuarioDTO> getUserById(@PathVariable Long id) {
+        Optional<UsuarioDTO> usuario = usuarioService.getUserById(id);
+        return usuario.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
+
+    @PostMapping
+    public ResponseEntity<UsuarioDTO> createUser(@RequestBody UsuarioDTO usuarioDTO) {
+        UsuarioDTO savedUsuario = usuarioService.saveUsuario(usuarioDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedUsuario);
+    }
+
 
     @GetMapping("/min")
     public List<Usuario> MayuMinu() {
@@ -51,12 +49,20 @@ public class UsuarioController {
     @PostMapping("/usuario/")
     public Usuario createUsuario(@RequestBody Usuario usuario) {
         return this.usuarioService.saveUsuario(usuario);
+
+    @PutMapping("/{id}")
+    public ResponseEntity<UsuarioDTO> updateUser(@PathVariable Long id, @RequestBody UsuarioDTO usuarioDTO) {
+        Optional<UsuarioDTO> updatedUsuario = usuarioService.updateUsuario(id, usuarioDTO);
+        return updatedUsuario.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+
     }
 
-    @PutMapping("/user/{id}")
-    public ResponseEntity<Usuario> updateUser(@PathVariable Long id, @RequestBody Usuario usuarioDetails) {
-        return usuarioService.updateUsuario(id, usuarioDetails)
-            .map(updatedUsuario -> ResponseEntity.ok(updatedUsuario))
-            .orElseGet(() -> ResponseEntity.notFound().build());
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteUser(@PathVariable Long id) {
+        if (usuarioService.deleteUser(id) == null){
+            return new ResponseEntity<>("User "+id +" is not founded", HttpStatus.INTERNAL_SERVER_ERROR);
+        } else {
+            return new ResponseEntity<>("User "+id +" deleted", HttpStatus.OK);
+        }
     }
 }
