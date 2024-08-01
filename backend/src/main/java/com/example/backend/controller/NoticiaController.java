@@ -28,11 +28,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class NoticiaController {
     private final NoticiaService noticiaService;
 
+
     public NoticiaController(@Autowired NoticiaService noticiaService) {
         this.noticiaService = noticiaService;
     }
-    
 
+    @GetMapping("/autor/{autor}")
+    public List<Noticia> getNoticiasByAutor(@PathVariable String autor) {
+        return noticiaService.getNoticiasByAutor(autor);
+    }
+    
     @GetMapping({"/allNotices"})
     public ResponseEntity<List<Noticia>> getNoticias(){
         return ResponseEntity.ok(noticiaService.getNoticias());

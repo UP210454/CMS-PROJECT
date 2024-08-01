@@ -21,8 +21,8 @@ const Carrusel = () => {
     }, [listado]);
 
   return (
-    <Fragment>
-      <div className="row mx-0">
+    <Fragment class="carrusel-bgcolor">
+      <div className="row mx-0 carrusel-bgcolor">
         <div id="carouselExampleCaptions" className="carousel slide offset-md-2 col-md-8">
           <div className="carousel-inner">
             {

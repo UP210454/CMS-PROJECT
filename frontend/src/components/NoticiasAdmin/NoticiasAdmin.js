@@ -5,13 +5,13 @@ const NoticiasAdmin = ({titulo, resumen, id}) => {
     <div className="noticiaComponent">  
         <div className="detallesNoticia">
           <h3>{titulo}</h3>
-          <p>{resumen}</p>
+          <p class="resumen-color">{resumen}</p>
         </div>
         <div className="botones">
-          <button className="buttonEdit"><img src="lapiz.png" class="updateImg"></img></button>      
+          <button className="buttonEdit btn btn-outline-info"><img src="lapiz.png" class="updateImg"></img></button>      
         </div>
         <div className="botones">
-          <button className="buttonEdit"><img src="borrar.png" class="deleteImg"></img></button>
+          <button className="buttonEdit btn btn-outline-danger"><img src="borrar.png" class="deleteImg"></img></button>
         </div>
     </div>
   );
