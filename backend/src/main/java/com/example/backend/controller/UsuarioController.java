@@ -39,10 +39,22 @@ public class UsuarioController {
         return ResponseEntity.status(HttpStatus.CREATED).body(savedUsuario);
     }
 
+
+    @GetMapping("/min")
+    public List<Usuario> MayuMinu() {
+        return usuarioService.MayuMinu();
+    }
+    
+
+    @PostMapping("/usuario/")
+    public Usuario createUsuario(@RequestBody Usuario usuario) {
+        return this.usuarioService.saveUsuario(usuario);
+
     @PutMapping("/{id}")
     public ResponseEntity<UsuarioDTO> updateUser(@PathVariable Long id, @RequestBody UsuarioDTO usuarioDTO) {
         Optional<UsuarioDTO> updatedUsuario = usuarioService.updateUsuario(id, usuarioDTO);
         return updatedUsuario.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+
     }
 
     @DeleteMapping("/{id}")
