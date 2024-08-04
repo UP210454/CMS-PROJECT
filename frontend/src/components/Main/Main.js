@@ -4,11 +4,8 @@ import AlbumNoticias from "./AlbumNoticias";
 const Main = () =>{
     return(
         <div>
-            <br/>
-            <br/>
-            <br/>
             <Carrusel></Carrusel>
-            <br/>
+            <h1 className="tituloAdmin">Noticias</h1>
             <AlbumNoticias></AlbumNoticias>
         </div>
     ) 

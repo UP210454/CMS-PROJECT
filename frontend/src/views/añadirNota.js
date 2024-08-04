@@ -43,12 +43,12 @@ function AñadirNota() {
     };
 
     return (
-        <div>
+        <div className="añadir-formulario">
             <Container
                 maxWidth="sm"
                 sx={{
-                    marginTop: '20px',
-                    backgroundColor: 'gray',
+                    border: "solid" ,
+                    backgroundColor: 'White',
                     padding: '20px',
                     borderRadius: '8px',
                     display: 'flex',
@@ -56,7 +56,7 @@ function AñadirNota() {
                     alignItems: 'center'
                 }}
             >
-                <Typography variant="h6" sx={{ color: 'white', marginBottom: '20px' }}>
+                <Typography variant="h6" sx={{ color: 'black', marginBottom: '5px' }}>
                     Añadir Nota
                 </Typography>
                 <Box
@@ -67,7 +67,7 @@ function AñadirNota() {
                     sx={{ width: '100%' }}
                 >
                     <Box sx={{ marginBottom: '20px' }}>
-                        <Typography variant="body1" sx={{ color: 'white', marginBottom: '8px' }}>
+                        <Typography variant="body1" sx={{ color: 'black', marginBottom: '8px' }}>
                             Título
                         </Typography>
                         <Input
@@ -76,17 +76,17 @@ function AñadirNota() {
                             value={titulo}
                             onChange={(e) => setTitulo(e.target.value)}
                             sx={{
-                                color: 'white',
+                                color: 'black',
                                 backgroundColor: 'transparent',
-                                border: '1px solid white',
+                                border: '1px solid black',
                                 borderRadius: '4px',
                                 padding: '10px',
-                                '&::placeholder': { color: 'white' }
+                                '&::placeholder': { color: 'black' }
                             }}
                         />
                     </Box>
                     <Box sx={{ marginBottom: '20px' }}>
-                        <Typography variant="body1" sx={{ color: 'white', marginBottom: '8px' }}>
+                        <Typography variant="body1" sx={{ color: 'black', marginBottom: '8px' }}>
                             Fecha
                         </Typography>
                         <Input
@@ -96,17 +96,17 @@ function AñadirNota() {
                             value={fechaPublicacion}
                             onChange={(e) => setFechaPublicacion(e.target.value)}
                             sx={{
-                                color: 'white',
+                                color: 'black',
                                 backgroundColor: 'transparent',
-                                border: '1px solid white',
+                                border: '1px solid black',
                                 borderRadius: '4px',
                                 padding: '10px',
-                                '&::placeholder': { color: 'white' }
+                                '&::placeholder': { color: 'black' }
                             }}
                         />
                     </Box>
                     <Box sx={{ marginBottom: '20px' }}>
-                        <Typography variant="body1" sx={{ color: 'white', marginBottom: '8px' }}>
+                        <Typography variant="body1" sx={{ color: 'black', marginBottom: '8px' }}>
                             Autor
                         </Typography>
                         <Input
@@ -115,17 +115,17 @@ function AñadirNota() {
                             value={autor}
                             onChange={(e) => setAutor(e.target.value)}
                             sx={{
-                                color: 'white',
+                                color: 'black',
                                 backgroundColor: 'transparent',
-                                border: '1px solid white',
+                                border: '1px solid black',
                                 borderRadius: '4px',
                                 padding: '10px',
-                                '&::placeholder': { color: 'white' }
+                                '&::placeholder': { color: 'black' }
                             }}
                         />
                     </Box>
                     <Box sx={{ marginBottom: '20px' }}>
-                        <Typography variant="body1" sx={{ color: 'white', marginBottom: '8px' }}>
+                        <Typography variant="body1" sx={{ color: 'black', marginBottom: '8px' }}>
                             URL de imagen
                         </Typography>
                         <Input
@@ -134,33 +134,33 @@ function AñadirNota() {
                             value={url}
                             onChange={(e) => setUrl(e.target.value)}
                             sx={{
-                                color: 'white',
+                                color: 'black',
                                 backgroundColor: 'transparent',
-                                border: '1px solid white',
+                                border: '1px solid black',
                                 borderRadius: '4px',
                                 padding: '10px',
-                                '&::placeholder': { color: 'white' }
+                                '&::placeholder': { color: 'black' }
                             }}
                         />
                     </Box>
                     <Box sx={{ marginBottom: '20px' }}>
-                        <Typography variant="body1" sx={{ color: 'white', marginBottom: '8px' }}>
+                        <Typography variant="body1" sx={{ color: 'black', marginBottom: '8px' }}>
                             Contenido
                         </Typography>
                         <Input
                             fullWidth
                             placeholder="Contenido"
                             multiline
-                            rows={10}
+                            rows={2}
                             value={contenido}
                             onChange={(e) => setContenido(e.target.value)}
                             sx={{
-                                color: 'white',
+                                color: 'black',
                                 backgroundColor: 'transparent',
-                                border: '1px solid white',
+                                border: '1px solid black',
                                 borderRadius: '4px',
                                 padding: '10px',
-                                '&::placeholder': { color: 'white' }
+                                '&::placeholder': { color: 'black' }
                             }}
                         />
                     </Box>
@@ -168,7 +168,7 @@ function AñadirNota() {
                         type="submit"
                         variant="contained"
                         color="primary"
-                        sx={{ marginTop: '20px' }}
+                        sx={{ marginTop: '20px' , bgcolor:"#b10b1f" }}
                     >
                         Añadir Nota
                     </Button>

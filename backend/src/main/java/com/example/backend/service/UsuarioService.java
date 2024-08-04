@@ -16,28 +16,41 @@ import com.example.backend.repository.UsuarioRepository;
 @Service
 public class UsuarioService {
     private final UsuarioRepository usuarioRepository;
+    private final UsuarioMapper usuarioMapper;
 
     @Autowired
-    public UsuarioService(UsuarioRepository usuarioRepository) {
+    public UsuarioService(UsuarioRepository usuarioRepository, UsuarioMapper usuarioMapper) {
         this.usuarioRepository = usuarioRepository;
-    }
- 
-    public List<Usuario> getAllUsers(){
-        return usuarioRepository.findAll();
-    }
-    
-    public Optional<Usuario>getUserbyId(Long id){
-        return usuarioRepository.findById(id);
-    }
-    
-    public Usuario saveUsuario(Usuario usuario) {
-        return usuarioRepository.save(usuario);
+        this.usuarioMapper = usuarioMapper;
     }
 
-    public void deleteUser(Long id){
+    public List<UsuarioDTO> getAllUsers() {
+        return usuarioRepository.findAll().stream()
+            .map(usuarioMapper::toDto)
+            .collect(Collectors.toList());
+    }
+
+    public Optional<UsuarioDTO> getUserById(Long id) {
+        return usuarioRepository.findById(id)
+            .map(usuarioMapper::toDto);
+    }
+
+    public UsuarioDTO saveUsuario(UsuarioDTO usuarioDTO) {
+        Usuario usuario = usuarioMapper.toEntity(usuarioDTO);
+        Usuario savedUsuario = usuarioRepository.save(usuario);
+        return usuarioMapper.toDto(savedUsuario);
+    }
+
+    public String deleteUser(Long id) {
+        if (usuarioRepository.findById(id).isPresent() == false){
+            return null;
+        }
         usuarioRepository.deleteById(id);
+        return "Se logro";
+        
     }
 
+    public Optional<UsuarioDTO> updateUsuario(Long id, UsuarioDTO usuarioDTO) {
     public List<Usuario> MayuMinu(){
         List<Usuario> usuarios = usuarioRepository.findAll();
         return usuarios.stream()
@@ -53,12 +66,13 @@ public class UsuarioService {
     // Method to update a user
     public Optional<Usuario> updateUsuario(Long id, Usuario newUsuarioData) {
         return usuarioRepository.findById(id)
-            .map(usuario -> {
-                usuario.setNombre(newUsuarioData.getNombre());
-                usuario.setEmail(newUsuarioData.getEmail());
-                usuario.setContrasena(newUsuarioData.getContrasena());
-                return usuarioRepository.save(usuario);
-            });
+            .map(existingUsuario -> {
+                existingUsuario.setNombre(usuarioDTO.getNombre());
+                existingUsuario.setEmail(usuarioDTO.getEmail());
+                existingUsuario.setContrasena(usuarioDTO.getContrasena());
+                return usuarioRepository.save(existingUsuario);
+            })
+            .map(usuarioMapper::toDto);
     }
 
 }
