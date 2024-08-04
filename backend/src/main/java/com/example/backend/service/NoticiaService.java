@@ -12,11 +12,15 @@ import com.example.backend.repository.NoticiaRepository;
 
 @Service
 public class NoticiaService {
+    @Autowired
     private final NoticiaRepository noticiaRepository;
 
-    @Autowired
     public NoticiaService(NoticiaRepository noticiaRepository) {
         this.noticiaRepository = noticiaRepository;
+    }
+
+    public List<Noticia> getNoticiasByAutor(String autor) {
+        return noticiaRepository.findByAutor(autor);
     }
 
     public List<Noticia> getNoticias(){
