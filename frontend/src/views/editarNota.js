@@ -1,29 +1,87 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import { Container, Box, Button, Input, Typography } from '@mui/material';
 
-function AñadirNota() {
-    const [titulo, setTitulo] = useState('');
-    const [contenido, setContenido] = useState('');
-    const [resumen, setResumen] = useState('');
-    const [fechaPublicacion, setFechaPublicacion] = useState('');
-    const [url, setUrl] = useState('');
-    const [autor, setAutor] = useState('');
+import { obtenerNoticia, editarNoticia } from '../actions/noticias';
+
+function EditarNota() {
+
+    const { id } = useParams();
+
+    const dispatch =  useDispatch();
+    
+    const { detalles } = useSelector(state => state.noticias);
+    
+    const [noticia, setNoticia] = useState({
+        idNoticia: null,
+        titulo: null,
+        contenido: null,
+        resumen: null,
+        fechaPublicacion: null,
+        url: null,
+        autor: null
+    });
+
+    useEffect(() => {
+        dispatch(obtenerNoticia(id));
+    }, [id]);
+
+    useEffect(() => {
+        if(detalles){
+            console.log(detalles.fechaPublicacion);
+            let fecha_formateada = null;
+            if(detalles.fechaPublicacion){
+                if(detalles.fechaPublicacion.length == 3){
+                    fecha_formateada = detalles.fechaPublicacion[0] + '-' + padWithZeros(detalles.fechaPublicacion[1]) + '-' + padWithZeros(detalles.fechaPublicacion[2]);
+                }
+            }
+            console.log(fecha_formateada);
+            setNoticia({
+                idNoticia: id,
+                titulo: detalles.titulo,
+                contenido: detalles.contenido,
+                resumen: detalles.resumen,
+                fechaPublicacion: fecha_formateada,
+                url: detalles.url,
+                autor: detalles.autor
+            });
+        }
+    }, [detalles]);
+
+    const padWithZeros = (value) => {
+        const str = String(value);
+        if (str.length < 2) {
+          return str.padStart(2, '0');
+        }
+        return str;
+      }
+
+    const onchangeNoticia = (e) => {
+        setNoticia({
+            ...noticia, [e.target.name]: e.target.value
+        })
+    }
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const resumenGenerado = contenido.split('.')[0]; // Extrae el resumen hasta el primer punto
+        const resumenGenerado = noticia.contenido.split('.')[0]; // Extrae el resumen hasta el primer punto
 
-        const noticia = {
-            titulo,
-            contenido,
+        const noticia_editada = {
+            idNoticia: noticia.idNoticia,
+            titulo: noticia.titulo,
+            contenido: noticia.contenido,
             resumen: resumenGenerado,
-            fechaPublicacion,
-            url,
-            autor
+            fechaPublicacion: noticia.fechaPublicacion,
+            url: noticia.url,
+            autor: noticia.autor
         };
 
-        try {
+        await dispatch(editarNoticia(noticia_editada));
+        window.location.href="/noticiasAdmin";
+
+        /* try {
             const response = await fetch('http://localhost:8080/noticia/', {
                 method: 'POST',
                 headers: {
@@ -39,7 +97,7 @@ function AñadirNota() {
             alert('Nota añadida correctamente');
         } catch (error) {
             alert(error.message);
-        }
+        } */
     };
 
     return (
@@ -57,7 +115,7 @@ function AñadirNota() {
                 }}
             >
                 <Typography variant="h6" sx={{ color: 'black', marginBottom: '5px' }}>
-                    Añadir Nota
+                    Editar Nota
                 </Typography>
                 <Box
                     component="form"
@@ -73,8 +131,9 @@ function AñadirNota() {
                         <Input
                             fullWidth
                             placeholder="Título"
-                            value={titulo}
-                            onChange={(e) => setTitulo(e.target.value)}
+                            value={noticia.titulo}
+                            name= "titulo"
+                            onChange={(e) => onchangeNoticia(e)}
                             sx={{
                                 color: 'black',
                                 backgroundColor: 'transparent',
@@ -93,8 +152,9 @@ function AñadirNota() {
                             fullWidth
                             placeholder="Fecha"
                             type="date"
-                            value={fechaPublicacion}
-                            onChange={(e) => setFechaPublicacion(e.target.value)}
+                            value={noticia.fechaPublicacion}
+                            name= "fechaPublicacion"
+                            onChange={(e) => onchangeNoticia(e)}
                             sx={{
                                 color: 'black',
                                 backgroundColor: 'transparent',
@@ -112,8 +172,9 @@ function AñadirNota() {
                         <Input
                             fullWidth
                             placeholder="Autor"
-                            value={autor}
-                            onChange={(e) => setAutor(e.target.value)}
+                            value={noticia.autor}
+                            name= "autor"
+                            onChange={(e) => onchangeNoticia(e)}
                             sx={{
                                 color: 'black',
                                 backgroundColor: 'transparent',
@@ -131,8 +192,9 @@ function AñadirNota() {
                         <Input
                             fullWidth
                             placeholder="URL de imagen"
-                            value={url}
-                            onChange={(e) => setUrl(e.target.value)}
+                            value={noticia.url}
+                            name= "url"
+                            onChange={(e) => onchangeNoticia(e)}
                             sx={{
                                 color: 'black',
                                 backgroundColor: 'transparent',
@@ -152,8 +214,9 @@ function AñadirNota() {
                             placeholder="Contenido"
                             multiline
                             rows={2}
-                            value={contenido}
-                            onChange={(e) => setContenido(e.target.value)}
+                            value={noticia.contenido}
+                            name= "contenido"
+                            onChange={(e) => onchangeNoticia(e)}
                             sx={{
                                 color: 'black',
                                 backgroundColor: 'transparent',
@@ -170,7 +233,7 @@ function AñadirNota() {
                         color="primary"
                         sx={{ marginTop: '20px' , bgcolor:"#b10b1f" }}
                     >
-                        Añadir Nota
+                        Guardar Nota
                     </Button>
                 </Box>
             </Container>
@@ -178,4 +241,4 @@ function AñadirNota() {
     );
 }
 
-export default AñadirNota;
+export default EditarNota;

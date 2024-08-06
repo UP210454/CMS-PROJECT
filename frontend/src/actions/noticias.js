@@ -38,3 +38,29 @@ export const obtenerNoticia = (id) => async dispatch => {
         console.log(error);
     }
 }
+
+export const editarNoticia = (noticia) => async dispatch => {
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+    try{
+        const res = await axios.put(`http://localhost:8080/news/${noticia.idNoticia}`, noticia, config);
+    } catch (error){ 
+        console.log(error);
+    }
+}
+
+export const eliminarNoticia = (id) => async dispatch => {
+    const config = {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+    try{
+        const res = await axios.delete(`http://localhost:8080/noticia/${id}`, config);
+    } catch (error){ 
+        console.log(error);
+    }
+}

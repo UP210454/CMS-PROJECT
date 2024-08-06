@@ -22,10 +22,9 @@ const DetalleNota = () => {
     }, [detalles]);
 
     return (
-        <div>  
-            <br/>
-            <br/>
-            <br/>
+        <div>
+            <br></br>
+            <br></br>
             <div className="news-container">
                 <a href='/home'><button className="back-button">
                     Regresar
@@ -36,6 +35,7 @@ const DetalleNota = () => {
                 <div className="news-title">
                     <h1>{noticia?.titulo || "Sin titulo"}</h1>
                 </div>
+                <h4>{noticia?.autor || "Sin autor"}</h4>
                 <p className="news-text">
                     {noticia?.contenido || "Error"}
                 </p>

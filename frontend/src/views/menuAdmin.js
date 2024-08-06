@@ -21,16 +21,18 @@ function MenuAdmin() {
     }, [listado]);
 
     return (
-        <div>
+        <div className="menuAdmin">
             <br></br>
-            <br></br>
-            <br></br>
-            <h1 className="tituloAdmin"><i>Administración de Noticias</i></h1>
+        
+            <h1 className="tituloAdmin">Administración de Noticias</h1>
+            <div className="añadirBtn">
+            <a class="btn btn-primary btn-success añadirBtn añadir-button" href="/addNotice" role="button">Añadir Noticia</a>
+            </div>
             {
-		            	noticias.map(noticia => (
-                            <NoticiasAdmin titulo={noticia.titulo} resumen={noticia.resumen} id={noticia.idNoticia}></NoticiasAdmin>
-                        ))
-                    }
+		        noticias.map(noticia => (
+                    <NoticiasAdmin titulo={noticia.titulo} resumen={noticia.resumen} id={noticia.idNoticia}></NoticiasAdmin>
+                ))
+            }
                    
         </div>
     );

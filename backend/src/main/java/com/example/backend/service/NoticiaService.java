@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.backend.model.Noticia;
-import com.example.backend.model.Usuario;
 import com.example.backend.repository.NoticiaRepository;
 
 @Service
@@ -19,11 +18,11 @@ public class NoticiaService {
         this.noticiaRepository = noticiaRepository;
     }
 
-    public List<Noticia> getNoticias(){
+    public List<Noticia> getNoticias() {
         return noticiaRepository.findAll();
     }
     
-    public Optional<Noticia>getNoticia(Long id){
+    public Optional<Noticia> getNoticia(Long id) {
         return noticiaRepository.findById(id);
     }
 
@@ -31,7 +30,24 @@ public class NoticiaService {
         return noticiaRepository.save(noticia);
     }
     
-    public void eliminar(Long id){
+    public void eliminar(Long id) {
         noticiaRepository.deleteById(id);
+    }
+
+    public Optional<Noticia> updateNoticia(Long id, Noticia newNoticiaData) {
+        return noticiaRepository.findById(id)
+            .map(noticia -> {
+                noticia.setTitulo(newNoticiaData.getTitulo());
+                noticia.setContenido(newNoticiaData.getContenido());
+                noticia.setResumen(newNoticiaData.getResumen());
+                noticia.setFechaPublicacion(newNoticiaData.getFechaPublicacion());
+                noticia.setUrl(newNoticiaData.getUrl());
+                noticia.setAutor(newNoticiaData.getAutor());
+                return noticiaRepository.save(noticia);
+            });
+    }
+
+    public List<Noticia> getNoticiasByAutor(String autor) {
+        return noticiaRepository.findByAutor(autor);
     }
 }
