@@ -5,12 +5,12 @@ import { Provider } from 'react-redux';
 //Components
 import Navbar from './components/Navbar/Navbar';
 import Main from './components/Main/Main'
-import Login from './views/login'
 import DetalleNota from './views/detalleNota';
 import AñadirNota from './views/añadirNota';
 import MenuAdmin from './views/menuAdmin';
 import NotFoundPage from './components/routing/NotFoundPage'
 import store from './store';
+import EditarNota from './views/editarNota';
 
 //Views
 
@@ -21,10 +21,10 @@ function App() {
 				<Fragment>
 					<Navbar></Navbar>
 					<Routes>
-						<Route path='/login' element={<Login/>}></Route>
 						<Route path='/home' element={<Main/>}></Route>
 						<Route path='/detalleNota/:id' element={<DetalleNota/>}></Route>
 						<Route path='/addNotice' element={<AñadirNota/>}></Route>
+						<Route path='/editNotice/:id' element={<EditarNota/>}></Route>
 						<Route path='/noticiasAdmin' element={<MenuAdmin/>}></Route>
 						<Route path='/*' element={<NotFoundPage/>}></Route>
 					</Routes>
