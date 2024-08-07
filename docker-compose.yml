@@ -7,7 +7,7 @@ services:
     depends_on:
       - backend
     environment:
-      VITE_API_URL: http://localhost:3000/
+      VITE_API_URL: http://64.23.252.141:3000/
 
   backend:
     build: backend

@@ -10,7 +10,7 @@ export const obtenerNoticias = () => async dispatch => {
         }
     }
     try{
-        const res = await axios.get(`http://localhost:8080/allNotices`, config);
+        const res = await axios.get(`http://64.23.252.141:8080/allNotices`, config);
 
         dispatch({
             type: LISTAR_NOTICIAS,
@@ -28,7 +28,7 @@ export const obtenerNoticia = (id) => async dispatch => {
         }
     }
     try{
-        const res = await axios.get(`http://localhost:8080/noticia/${id}`, config);
+        const res = await axios.get(`http://64.23.252.141:8080/noticia/${id}`, config);
 
         dispatch({
             type: DETALLES_NOTICIA,
@@ -46,7 +46,7 @@ export const editarNoticia = (noticia) => async dispatch => {
         }
     }
     try{
-        const res = await axios.put(`http://localhost:8080/news/${noticia.idNoticia}`, noticia, config);
+        const res = await axios.put(`http://64.23.252.141:8080/news/${noticia.idNoticia}`, noticia, config);
     } catch (error){ 
         console.log(error);
     }
@@ -59,7 +59,7 @@ export const eliminarNoticia = (id) => async dispatch => {
         }
     }
     try{
-        const res = await axios.delete(`http://localhost:8080/noticia/${id}`, config);
+        const res = await axios.delete(`http://64.23.252.141:8080/noticia/${id}`, config);
     } catch (error){ 
         console.log(error);
     }

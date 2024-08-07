@@ -24,7 +24,7 @@ function AñadirNota() {
         };
 
         try {
-            const response = await fetch('http://localhost:8080/noticia/', {
+            const response = await fetch('http://64.23.252.141:8080/noticia/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
