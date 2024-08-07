@@ -21,6 +21,7 @@ function App() {
 				<Fragment>
 					<Navbar></Navbar>
 					<Routes>
+						<Route path='/' element={<Main/>}></Route>
 						<Route path='/home' element={<Main/>}></Route>
 						<Route path='/detalleNota/:id' element={<DetalleNota/>}></Route>
 						<Route path='/addNotice' element={<AñadirNota/>}></Route>
