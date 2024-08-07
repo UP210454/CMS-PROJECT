@@ -1,9 +1,10 @@
-FROM node:20
-ENV NODE_OPTIONS="--max-old-space-size=4096"
-WORKDIR /app/
+FROM node:lts as build-stage
+WORKDIR /app
 COPY package*.json ./
 RUN npm install --force
 COPY . .
 RUN npm run build
+
 FROM nginx:stable-alpine
-COPY --from=0 /app/build /usr/share/nginx/html
+# Copy built assets from build-stage
+COPY --from=build-stage /app/build /usr/share/nginx/html

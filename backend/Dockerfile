@@ -1,9 +1,15 @@
-# backend/Dockerfile
-FROM openjdk:17-jdk-alpine3.14
-RUN addgroup backend && adduser -S -G backend backend
-USER backend
-WORKDIR /app
-#COPY --chown=backend /backend/build/libs/ .
-COPY backend-0.0.1-SNAPSHOT.jar .
-ENTRYPOINT ["java","-jar","/app/p02-0.0.1-SNAPSHOT.jar"]
+FROM openjdk:22-jdk-slim
+VOLUME /tmp
 EXPOSE 8080
+
+ARG JAR_FILE=build/libs/*.jar
+COPY ${JAR_FILE} app.jar
+
+# Install default-mysql-client
+RUN apt-get update && apt-get install -y default-mysql-client
+
+# Crear un grupo y un usuario para Spring
+RUN addgroup --system spring && adduser --system spring --ingroup spring
+USER spring:spring
+
+ENTRYPOINT ["java", "-jar", "/app.jar"]
